@@ -20,7 +20,7 @@ class _LockUnLockButtonState extends State<LockUnLockButton> {
         isLooked = !isLooked;
       }),
       child: AnimatedSwitcher(
-        duration: Constants.kDefaultDuration,
+        duration: AppConstants.kDefaultDuration,
         switchInCurve: Curves.easeInOutBack,
         switchOutCurve: Curves.easeInOutBack,
         transitionBuilder: (child, animation) =>
