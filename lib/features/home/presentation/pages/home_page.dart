@@ -11,14 +11,21 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late AnimationController _batteryAnimationController;
+  late AnimationController _tempAnimationController;
   late Animation<double> batteryStatusAnimation;
+  late Animation<double> tempAnimation;
   int currentIndex = 0;
 
   @override
   void initState() {
+    _setupBatteryAnimation();
+    _setupTempAnimation();
+    super.initState();
+  }
+
+  void _setupBatteryAnimation() {
     _batteryAnimationController = AnimationController(
       vsync: this,
       duration: AppConstants.kDefaultDuration,
@@ -27,12 +34,23 @@ class _HomePageState extends State<HomePage>
       parent: _batteryAnimationController,
       curve: Curves.linear,
     );
-    super.initState();
+  }
+
+  void _setupTempAnimation() {
+    _tempAnimationController = AnimationController(
+      vsync: this,
+      duration: AppConstants.kDefaultDuration,
+    );
+    tempAnimation = CurvedAnimation(
+      parent: _tempAnimationController,
+      curve: Curves.linear,
+    );
   }
 
   @override
   void dispose() {
     _batteryAnimationController.dispose();
+    _tempAnimationController.dispose();
     super.dispose();
   }
 
@@ -42,6 +60,7 @@ class _HomePageState extends State<HomePage>
       body: HomePageBody(
         currentIndex: currentIndex,
         batteryAinmation: batteryStatusAnimation,
+        tempAnimation: tempAnimation,
       ),
       bottomNavigationBar: CustomButtomNavigationBar(
         currentIndex: currentIndex,
@@ -51,15 +70,32 @@ class _HomePageState extends State<HomePage>
   }
 
   void _onTap(int value) async {
-    currentIndex = value;
-    if (value == 1) {
-      Future.delayed(AppConstants.kDefaultDuration, () {
-        _batteryAnimationController.forward();
-      });
-      setState(() {});
-    } else {
-      await _batteryAnimationController.reverse();
-      setState(() {});
+    switch (currentIndex) {
+      case 1:
+        await _batteryAnimationController.reverse();
+      case 2:
+        await _tempAnimationController.reverse();
+    }
+
+    switch (value) {
+      case 0:
+        currentIndex = value;
+        setState(() {});
+      case 1:
+        Future.delayed(AppConstants.kDefaultDuration, () {
+          _batteryAnimationController.forward();
+        });
+        currentIndex = value;
+        setState(() {});
+      case 2:
+        Future.delayed(AppConstants.kDefaultDuration, () {
+          _tempAnimationController.forward();
+        });
+        currentIndex = value;
+        setState(() {});
+      case 3:
+        currentIndex = value;
+        setState(() {});
     }
   }
 }
