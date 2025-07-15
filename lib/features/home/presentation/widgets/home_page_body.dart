@@ -42,7 +42,7 @@ class HomePageBody extends StatelessWidget {
                 ignoring: currentIndex != 0,
                 child: DoorLockView(
                   currentIndex: currentIndex,
-                  constraints: constraints,
+                  outConstraints: constraints,
                 ),
               ),
               // battery view

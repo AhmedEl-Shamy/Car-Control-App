@@ -25,8 +25,9 @@ class TiresView extends StatelessWidget {
           opacity: tiresAnimation,
           child: CarLayoutBox(
             outConstraints: constraints,
-            builder: (context, constraints) =>
-                CarTiers(constraints: constraints),
+            builder: (context, constraints) {
+              return CarTiers(constraints: constraints);
+            },
           ),
         ),
         TiresStatusGridView(

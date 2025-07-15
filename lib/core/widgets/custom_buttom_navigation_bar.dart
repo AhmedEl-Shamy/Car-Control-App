@@ -39,6 +39,7 @@ class CustomButtomNavigationBar extends StatelessWidget {
                         BlendMode.srcIn,
                       )
                     : ColorFilter.mode(Color(0xFF929292), BlendMode.srcIn),
+                    height: 33,
               ),
               label: "",
             ),

@@ -12,7 +12,7 @@ class CarLayoutBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(outConstraints.maxHeight * 0.1),
+      padding: EdgeInsets.symmetric(vertical: outConstraints.maxHeight * 0.1),
       child: AspectRatio(
         aspectRatio: 222 / 477,
         child: LayoutBuilder(builder: builder),
