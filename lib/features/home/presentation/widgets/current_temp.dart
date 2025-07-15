@@ -14,7 +14,7 @@ class CurrentTemp extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "current tempreture".toUpperCase(),
+          "current temperature".toUpperCase(),
           style: TextStyle(fontSize: 18),
         ),
         SizedBox(height: AppConstants.kDefaultPading),

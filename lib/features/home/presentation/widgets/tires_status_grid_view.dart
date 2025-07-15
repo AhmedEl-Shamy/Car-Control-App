@@ -27,7 +27,7 @@ class TiresStatusGridView extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: AppConstants.kDefaultPading,
         crossAxisSpacing: AppConstants.kDefaultPading,
-        childAspectRatio: constraints.maxWidth / constraints.maxHeight,
+        childAspectRatio: _getAspectRatio,
       ),
       itemCount: 4,
       itemBuilder: (context, index) => ScaleTransition(
@@ -35,5 +35,11 @@ class TiresStatusGridView extends StatelessWidget {
         child: TireStatusItem(tire: tires[index], itemIndex: index),
       ),
     );
+  }
+
+  double get _getAspectRatio {
+    double width = constraints.maxWidth - AppConstants.kDefaultPading;
+    double height = constraints.maxHeight - AppConstants.kDefaultPading;
+    return width / height;
   }
 }
