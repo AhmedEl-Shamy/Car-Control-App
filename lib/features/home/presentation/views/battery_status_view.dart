@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/utlis/app_assets.dart';
 import '../../../../core/utlis/constants.dart';
-import 'battery_status_info_widget.dart';
+import '../widgets/battery_status_info_widget.dart';
 
 class BatteryStatusView extends StatelessWidget {
   const BatteryStatusView({

@@ -12,7 +12,7 @@ class CarImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: constraints.maxHeight * 0.1),
-      child: SvgPicture.asset(AppAssets.kIconsCar, width: double.infinity),
+      child: SvgPicture.asset(AppAssets.kIconsCar, width: double.infinity,),
     );
   }
 }

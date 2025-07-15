@@ -14,14 +14,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late AnimationController _batteryAnimationController;
   late AnimationController _tempAnimationController;
+  late AnimationController _tiresAnimationController;
   late Animation<double> batteryStatusAnimation;
   late Animation<double> tempAnimation;
+  late Animation<double> tiresAnimation;
+  late List<Animation<double>> tiresStatusAnimation;
   int currentIndex = 0;
-
   @override
   void initState() {
     _setupBatteryAnimation();
     _setupTempAnimation();
+    _setupTiresAnimation();
     super.initState();
   }
 
@@ -47,6 +50,24 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
+  void _setupTiresAnimation() {
+    _tiresAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1000),
+    );
+    tiresAnimation = CurvedAnimation(
+      parent: _tiresAnimationController,
+      curve: Interval(0, 0.2),
+    );
+    tiresStatusAnimation = List.generate(
+      4,
+      (index) => CurvedAnimation(
+        parent: _tiresAnimationController,
+        curve: Interval((index + 1) * 0.2, (index + 2) * 0.2),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     _batteryAnimationController.dispose();
@@ -61,6 +82,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         currentIndex: currentIndex,
         batteryAinmation: batteryStatusAnimation,
         tempAnimation: tempAnimation,
+        tiresAnimation: tiresAnimation,
+        tiresStatusAnimations: tiresStatusAnimation,
       ),
       bottomNavigationBar: CustomButtomNavigationBar(
         currentIndex: currentIndex,
@@ -75,27 +98,33 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         await _batteryAnimationController.reverse();
       case 2:
         await _tempAnimationController.reverse();
+      case 3:
+        await _tiresAnimationController.reverse();
     }
 
     switch (value) {
       case 0:
-        currentIndex = value;
-        setState(() {});
+        _updateUI(value);
       case 1:
         Future.delayed(AppConstants.kDefaultDuration, () {
           _batteryAnimationController.forward();
         });
-        currentIndex = value;
-        setState(() {});
+        _updateUI(value);
       case 2:
         Future.delayed(AppConstants.kDefaultDuration, () {
           _tempAnimationController.forward();
         });
-        currentIndex = value;
-        setState(() {});
+        _updateUI(value);
       case 3:
-        currentIndex = value;
-        setState(() {});
+        Future.delayed(AppConstants.kDefaultDuration, () {
+          _tiresAnimationController.forward();
+        });
+        _updateUI(value);
     }
+  }
+
+  void _updateUI(int value) {
+    currentIndex = value;
+    setState(() {});
   }
 }

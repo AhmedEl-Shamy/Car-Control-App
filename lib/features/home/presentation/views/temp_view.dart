@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utlis/app_assets.dart';
 import '../../../../core/utlis/constants.dart';
-import 'temp_details.dart';
+import '../widgets/temp_details.dart';
 
 class TempView extends StatefulWidget {
   const TempView({

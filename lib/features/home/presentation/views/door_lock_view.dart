@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/utlis/constants.dart';
-import 'lock_unlock_button.dart';
+import '../widgets/lock_unlock_button.dart';
 
 class DoorLockView extends StatelessWidget {
   const DoorLockView({
