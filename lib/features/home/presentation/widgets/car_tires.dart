@@ -11,27 +11,42 @@ class CarTiers extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Positioned(
+        _buildTire(
           top: constraints.maxHeight * 0.12,
           left: constraints.maxWidth * 0.08,
-          child: SvgPicture.asset(AppAssets.kIconsFLTyre),
         ),
-        Positioned(
+        _buildTire(
           top: constraints.maxHeight * 0.12,
           right: constraints.maxWidth * 0.08,
-          child: SvgPicture.asset(AppAssets.kIconsFLTyre),
         ),
-        Positioned(
+        _buildTire(
           top: constraints.maxHeight * 0.7,
           left: constraints.maxWidth * 0.08,
-          child: SvgPicture.asset(AppAssets.kIconsFLTyre),
         ),
-        Positioned(
+        _buildTire(
           top: constraints.maxHeight * 0.7,
           right: constraints.maxWidth * 0.08,
-          child: SvgPicture.asset(AppAssets.kIconsFLTyre),
         ),
       ],
+    );
+  }
+
+  Positioned _buildTire({
+    double? top,
+    double? bottom,
+    double? right,
+    double? left,
+  }) {
+    return Positioned(
+      top: top,
+      bottom: bottom,
+      right: right,
+      left: left,
+      height: constraints.maxHeight * 0.17,
+      child: AspectRatio(
+        aspectRatio: 28 / 81,
+        child: SvgPicture.asset(AppAssets.kIconsFLTyre),
+      ),
     );
   }
 }

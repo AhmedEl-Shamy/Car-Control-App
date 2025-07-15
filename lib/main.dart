@@ -1,8 +1,9 @@
 import 'package:car_control_app/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() {
-  runApp(CarControlApp());
+  runApp(DevicePreview(enabled: true, builder: (context) => CarControlApp()));
 }
 
 class CarControlApp extends StatelessWidget {
@@ -12,6 +13,7 @@ class CarControlApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Car Control App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
@@ -22,4 +24,3 @@ class CarControlApp extends StatelessWidget {
     );
   }
 }
-
